@@ -1,193 +1,514 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRICKET INSIGHTS HUB</title>
 
-<title>RAHUL TOSS FIXER</title>
-
-<!-- META PIXEL -->
-<script>
-!function(f,b,e,v,n,t,s){
-if(f.fbq)return;n=f.fbq=function(){
-n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)
-}(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
-
-fbq('init', '1265282839024084');
-fbq('track', 'PageView');
-fbq('track', 'ViewContent');
-</script>
-
-<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
 body{
-margin:0;
-font-family:sans-serif;
-background:linear-gradient(to bottom,#020617,#0f172a);
-color:white;
+    background:#050816;
+    color:white;
+    overflow-x:hidden;
 }
 
-/* FULL SCREEN */
-.main{
-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:space-between;
-padding:20px;
+/* Animated Background */
+
+body::before{
+    content:'';
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:#00ffae;
+    filter:blur(180px);
+    top:-150px;
+    left:-150px;
+    opacity:0.18;
+    z-index:-1;
 }
 
-/* TITLE */
-.title{
-font-size:28px;
-font-weight:900;
-color:#facc15;
-text-align:center;
+body::after{
+    content:'';
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:#ff006a;
+    filter:blur(180px);
+    bottom:-150px;
+    right:-150px;
+    opacity:0.15;
+    z-index:-1;
 }
 
-/* CARD */
-.card{
-background:#111827;
-padding:20px;
-border-radius:16px;
-text-align:center;
-margin-top:15px;
-box-shadow:0 10px 25px rgba(0,0,0,0.5);
+/* TOP POWERED BAR */
+
+.top-powered{
+    width:100%;
+    text-align:center;
+    padding:12px 10px;
+    background:linear-gradient(90deg,#ff0000,#ff7b00,#ffd000,#00ffae,#00c3ff,#ff00ea);
+    background-size:400% 400%;
+    animation:glowMove 8s linear infinite;
+    font-size:18px;
+    font-weight:800;
+    letter-spacing:2px;
+    color:white;
+    text-shadow:0 0 15px rgba(255,255,255,0.8);
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:99999;
+    box-shadow:0 0 25px rgba(255,255,255,0.2);
 }
 
-/* BUTTON */
-.btn{
-display:block;
-width:100%;
-padding:16px;
-border-radius:12px;
-font-weight:bold;
-text-align:center;
-margin-top:15px;
-transition:0.2s;
+@keyframes glowMove{
+    0%{
+        background-position:0% 50%;
+    }
+    50%{
+        background-position:100% 50%;
+    }
+    100%{
+        background-position:0% 50%;
+    }
 }
 
-.btn1{ background:#22c55e; }
-.btn2{ background:#2563eb; }
+/* Header */
 
-.btn:hover{
-transform:scale(1.05);
+header{
+    width:100%;
+    padding:20px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:fixed;
+    top:48px;
+    left:0;
+    z-index:999;
+    backdrop-filter:blur(12px);
+    background:rgba(0,0,0,0.25);
+    border-bottom:1px solid rgba(255,255,255,0.08);
 }
 
-/* BADGE */
+.logo{
+    font-size:28px;
+    font-weight:800;
+    background:linear-gradient(90deg,#00ffae,#00c3ff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.nav{
+    display:flex;
+    gap:25px;
+}
+
+.nav a{
+    color:white;
+    text-decoration:none;
+    font-size:15px;
+    transition:0.3s;
+}
+
+.nav a:hover{
+    color:#00ffae;
+}
+
+/* Hero */
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:180px 20px 80px;
+}
+
+.hero-content{
+    max-width:900px;
+}
+
 .badge{
-background:#ef4444;
-padding:5px 10px;
-border-radius:20px;
-font-size:12px;
-display:inline-block;
-margin-top:8px;
+    display:inline-block;
+    padding:10px 20px;
+    border:1px solid rgba(255,255,255,0.2);
+    border-radius:40px;
+    margin-bottom:25px;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(10px);
+    font-size:14px;
+    color:#00ffae;
 }
 
-/* DISCLAIMER */
-.disclaimer{
-font-size:11px;
-color:#9ca3af;
-text-align:center;
-margin-top:15px;
-line-height:1.4;
+.hero h1{
+    font-size:70px;
+    line-height:1.1;
+    margin-bottom:25px;
+    font-weight:800;
 }
+
+.hero h1 span{
+    background:linear-gradient(90deg,#00ffae,#00c3ff,#ff00ea);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.hero p{
+    font-size:19px;
+    color:#cfcfcf;
+    line-height:1.8;
+    margin-bottom:40px;
+}
+
+/* Telegram Button */
+
+.telegram-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:15px;
+    padding:18px 38px;
+    border-radius:70px;
+    text-decoration:none;
+    color:white;
+    font-size:18px;
+    font-weight:700;
+    position:relative;
+    overflow:hidden;
+    background:linear-gradient(135deg,#0088cc,#00c3ff);
+    box-shadow:0 0 35px rgba(0,195,255,0.45);
+    transition:0.4s;
+}
+
+.telegram-btn:hover{
+    transform:translateY(-5px) scale(1.03);
+    box-shadow:0 0 60px rgba(0,195,255,0.7);
+}
+
+.telegram-btn::before{
+    content:'';
+    position:absolute;
+    width:120%;
+    height:100%;
+    background:rgba(255,255,255,0.2);
+    left:-120%;
+    top:0;
+    transform:skewX(-25deg);
+    transition:0.6s;
+}
+
+.telegram-btn:hover::before{
+    left:130%;
+}
+
+.telegram-icon{
+    font-size:28px;
+}
+
+/* Cards */
+
+.section{
+    padding:90px 8%;
+}
+
+.section-title{
+    text-align:center;
+    font-size:45px;
+    margin-bottom:60px;
+    font-weight:800;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:25px;
+    padding:35px;
+    transition:0.4s;
+    backdrop-filter:blur(10px);
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border-color:#00ffae;
+    box-shadow:0 0 30px rgba(0,255,174,0.18);
+}
+
+.card h3{
+    font-size:24px;
+    margin-bottom:15px;
+}
+
+.card p{
+    color:#d5d5d5;
+    line-height:1.8;
+}
+
+/* Stats */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:25px;
+    margin-top:50px;
+}
+
+.stat-box{
+    text-align:center;
+    padding:40px;
+    border-radius:25px;
+    background:linear-gradient(145deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03));
+    border:1px solid rgba(255,255,255,0.08);
+}
+
+.stat-box h2{
+    font-size:48px;
+    color:#00ffae;
+    margin-bottom:10px;
+}
+
+.stat-box p{
+    color:#d4d4d4;
+}
+
+/* Footer */
+
+footer{
+    padding:40px 20px;
+    text-align:center;
+    border-top:1px solid rgba(255,255,255,0.08);
+    color:#aaa;
+    margin-top:50px;
+}
+
+footer span{
+    color:#00ffae;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .hero h1{
+        font-size:42px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .section-title{
+        font-size:32px;
+    }
+
+    .telegram-btn{
+        padding:16px 28px;
+        font-size:16px;
+    }
+
+    .nav{
+        display:none;
+    }
+
+    .top-powered{
+        font-size:14px;
+        letter-spacing:1px;
+    }
+}
+
 </style>
-
 </head>
 
 <body>
 
-<div class="main">
+<!-- POWERED BAR -->
 
-<!-- TOP -->
-<div>
-<h1 class="title">RAHUL TOSS FIXER</h1>
-
-<div class="text-center mt-2">
-<span class="badge">🔥 LIMITED ACCESS</span>
+<div class="top-powered">
+    POWERED BY VIKRAM MALHAR
 </div>
 
-<div class="text-center mt-3 text-lg">
-⏳ Join Fast: <span id="countdown" class="text-yellow-300 font-bold">30</span>s
+<!-- HEADER -->
+
+<header>
+
+<div class="logo">CRICKET INSIGHTS</div>
+
+<div class="nav">
+<a href="#">Home</a>
+<a href="#">Analysis</a>
+<a href="#">Schedule</a>
+<a href="#">Reports</a>
+<a href="#">Insights</a>
+</div>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-content">
+
+<div class="badge">
+🏏 DAILY MATCH ANALYSIS • TOSS REPORT • SESSION UPDATE
+</div>
+
+<h1>
+India's Most <span>Powerful Cricket Insight</span> Telegram Community
+</h1>
+
+<p>
+Get daily cricket match updates, toss analysis, winning insights, session reports,
+pitch reports, fantasy tips, schedules, expert analysis and live cricket intelligence
+all in one premium Telegram channel.
+</p>
+
+<a href="https://t.me/+RVFoIKKOME9iZDA1" class="telegram-btn" target="_blank">
+
+<span class="telegram-icon">✈️</span>
+JOIN TELEGRAM NOW
+
+</a>
+
+</div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section class="section">
+
+<h2 class="section-title">
+🔥 WHAT YOU GET
+</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>🏏 Match Analysis</h3>
+<p>
+Deep pre-match analysis with team performance, player form, venue stats and expert opinions.
+</p>
 </div>
 
 <div class="card">
-<p class="text-lg font-semibold">📢 Daily Toss Updates</p>
-<p class="text-sm mt-2">High Accuracy • Instant Access 👇</p>
+<h3>🎯 Toss Reports</h3>
+<p>
+Fast toss updates with accurate ground condition analysis and decision impact reports.
+</p>
 </div>
+
+<div class="card">
+<h3>📊 Session Insights</h3>
+<p>
+Daily session updates, match momentum analysis and smart cricket observations.
+</p>
 </div>
 
-<!-- BUTTONS -->
-<div>
+<div class="card">
+<h3>📅 Match Schedule</h3>
+<p>
+Get daily cricket schedules including IPL, T20, ODI and international matches instantly.
+</p>
+</div>
 
-<a href="https://t.me/+BZMHSu-IhjFlZjll" id="btn1">
-<div class="btn btn1">JOIN NOW 🚀</div>
-</a>
+<div class="card">
+<h3>⚡ Live Updates</h3>
+<p>
+Instant updates during matches with live score insights and game-changing moments.
+</p>
+</div>
 
-<a href="https://t.me/+BZMHSu-IhjFlZjll" id="btn2">
-<div class="btn btn2">GET ACCESS ⚡</div>
-</a>
+<div class="card">
+<h3>🚀 Premium Community</h3>
+<p>
+Join thousands of cricket lovers receiving advanced cricket intelligence every day.
+</p>
+</div>
 
-<p class="disclaimer">
-⚠️ This page is for informational purposes only.  
-We do not guarantee any results, profits, or accuracy.  
-Users should act at their own discretion.  
-This page follows advertising guidelines and avoids misleading claims.
+</div>
+
+</section>
+
+<!-- STATS -->
+
+<section class="section">
+
+<h2 class="section-title">
+📈 COMMUNITY POWER
+</h2>
+
+<div class="stats">
+
+<div class="stat-box">
+<h2>24×7</h2>
+<p>Live Cricket Coverage</p>
+</div>
+
+<div class="stat-box">
+<h2>100%</h2>
+<p>Daily Match Updates</p>
+</div>
+
+<div class="stat-box">
+<h2>FAST</h2>
+<p>Toss & Session Reports</p>
+</div>
+
+<div class="stat-box">
+<h2>VIP</h2>
+<p>Premium Cricket Insights</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- JOIN SECTION -->
+
+<section class="section" style="text-align:center;">
+
+<h2 class="section-title">
+🚀 JOIN THE TELEGRAM CHANNEL NOW
+</h2>
+
+<p style="max-width:800px;margin:auto;color:#cfcfcf;line-height:1.9;font-size:18px;margin-bottom:40px;">
+Don't miss daily cricket analysis, toss reports, match insights and session updates.
+Tap below and become part of the fastest growing cricket community.
 </p>
 
-</div>
+<a href="https://t.me/+RVFoIKKOME9iZDA1" class="telegram-btn" target="_blank">
 
-</div>
+<span class="telegram-icon">📢</span>
+ENTER TELEGRAM CHANNEL
 
-<script>
+</a>
 
-let timeLeft = 30;
-let leadTracked = false;
+</section>
 
-const countdown = document.getElementById("countdown");
+<!-- FOOTER -->
 
-const timer = setInterval(() => {
-timeLeft--;
-countdown.innerText = timeLeft;
+<footer>
 
-if(timeLeft === 5 && !leadTracked){
-   fbq('track', 'Lead', {
-     content_name: 'Telegram Join',
-     value: 1,
-     currency: 'INR'
-   });
-   leadTracked = true;
-}
+© 2026 <span>CRICKET INSIGHTS HUB</span> — Powered By Vikram Malhar
 
-if(timeLeft < 0){
-clearInterval(timer);
-window.location.href = "https://t.me/+BZMHSu-IhjFlZjll";
-}
-},1000);
-
-/* TRACKING */
-function trackLead(){
-if(!leadTracked){
-fbq('track', 'Lead', {
-  content_name: 'Telegram Join',
-  value: 1,
-  currency: 'INR'
-});
-leadTracked = true;
-}
-}
-
-document.getElementById("btn1").onclick = trackLead;
-document.getElementById("btn2").onclick = trackLead;
-
-</script>
+</footer>
 
 </body>
 </html>
