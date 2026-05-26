@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>CRICKET INSIGHTS HUB</title>
 
@@ -18,182 +18,191 @@
 }
 
 body{
+    height:100vh;
+    overflow:hidden;
     background:#050816;
     color:white;
-    overflow-x:hidden;
+    position:relative;
 }
 
-/* Animated Background */
+/* BACKGROUND EFFECTS */
 
 body::before{
     content:'';
-    position:fixed;
-    width:500px;
-    height:500px;
+    position:absolute;
+    width:350px;
+    height:350px;
     background:#00ffae;
-    filter:blur(180px);
-    top:-150px;
-    left:-150px;
-    opacity:0.18;
-    z-index:-1;
+    filter:blur(140px);
+    top:-120px;
+    left:-120px;
+    opacity:0.25;
 }
 
 body::after{
     content:'';
-    position:fixed;
-    width:500px;
-    height:500px;
-    background:#ff006a;
-    filter:blur(180px);
-    bottom:-150px;
-    right:-150px;
-    opacity:0.15;
-    z-index:-1;
+    position:absolute;
+    width:350px;
+    height:350px;
+    background:#ff00ea;
+    filter:blur(140px);
+    bottom:-120px;
+    right:-120px;
+    opacity:0.22;
 }
 
-/* TOP POWERED BAR */
+/* MAIN CONTAINER */
 
-.top-powered{
+.main{
+    width:100%;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:10px;
+}
+
+/* PHONE STYLE 9:16 */
+
+.phone-box{
+    width:100%;
+    max-width:430px;
+    aspect-ratio:9/16;
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(255,255,255,0.1);
+    border-radius:35px;
+    backdrop-filter:blur(18px);
+    overflow:hidden;
+    position:relative;
+    box-shadow:
+    0 0 40px rgba(0,255,174,0.15),
+    0 0 70px rgba(0,195,255,0.12);
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+/* TOP BAR */
+
+.powered{
     width:100%;
     text-align:center;
     padding:12px 10px;
-    background:linear-gradient(90deg,#ff0000,#ff7b00,#ffd000,#00ffae,#00c3ff,#ff00ea);
+    background:linear-gradient(90deg,#ff0000,#ff9900,#ffe600,#00ffae,#00c3ff,#ff00ea);
     background-size:400% 400%;
-    animation:glowMove 8s linear infinite;
-    font-size:18px;
+    animation:movebg 8s linear infinite;
+    font-size:14px;
     font-weight:800;
     letter-spacing:2px;
     color:white;
-    text-shadow:0 0 15px rgba(255,255,255,0.8);
-    position:fixed;
-    top:0;
-    left:0;
-    z-index:99999;
-    box-shadow:0 0 25px rgba(255,255,255,0.2);
+    text-shadow:0 0 10px rgba(255,255,255,0.7);
 }
 
-@keyframes glowMove{
-    0%{
-        background-position:0% 50%;
-    }
-    50%{
-        background-position:100% 50%;
-    }
-    100%{
-        background-position:0% 50%;
-    }
+@keyframes movebg{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
 }
 
-/* Header */
+/* CONTENT */
 
-header{
-    width:100%;
-    padding:20px 8%;
+.content{
+    padding:20px;
+    text-align:center;
+    flex:1;
     display:flex;
-    justify-content:space-between;
-    align-items:center;
-    position:fixed;
-    top:48px;
-    left:0;
-    z-index:999;
-    backdrop-filter:blur(12px);
-    background:rgba(0,0,0,0.25);
-    border-bottom:1px solid rgba(255,255,255,0.08);
+    flex-direction:column;
+    justify-content:space-evenly;
 }
+
+/* LOGO */
 
 .logo{
     font-size:28px;
     font-weight:800;
-    background:linear-gradient(90deg,#00ffae,#00c3ff);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
-}
-
-.nav{
-    display:flex;
-    gap:25px;
-}
-
-.nav a{
-    color:white;
-    text-decoration:none;
-    font-size:15px;
-    transition:0.3s;
-}
-
-.nav a:hover{
-    color:#00ffae;
-}
-
-/* Hero */
-
-.hero{
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    padding:180px 20px 80px;
-}
-
-.hero-content{
-    max-width:900px;
-}
-
-.badge{
-    display:inline-block;
-    padding:10px 20px;
-    border:1px solid rgba(255,255,255,0.2);
-    border-radius:40px;
-    margin-bottom:25px;
-    background:rgba(255,255,255,0.05);
-    backdrop-filter:blur(10px);
-    font-size:14px;
-    color:#00ffae;
-}
-
-.hero h1{
-    font-size:70px;
-    line-height:1.1;
-    margin-bottom:25px;
-    font-weight:800;
-}
-
-.hero h1 span{
+    line-height:1.2;
     background:linear-gradient(90deg,#00ffae,#00c3ff,#ff00ea);
     -webkit-background-clip:text;
     -webkit-text-fill-color:transparent;
 }
 
-.hero p{
-    font-size:19px;
-    color:#cfcfcf;
-    line-height:1.8;
-    margin-bottom:40px;
+/* BADGE */
+
+.badge{
+    display:inline-block;
+    padding:8px 18px;
+    border-radius:40px;
+    border:1px solid rgba(255,255,255,0.15);
+    background:rgba(255,255,255,0.05);
+    color:#00ffae;
+    font-size:12px;
+    font-weight:600;
 }
 
-/* Telegram Button */
+/* TITLE */
+
+h1{
+    font-size:34px;
+    line-height:1.2;
+    font-weight:800;
+}
+
+h1 span{
+    background:linear-gradient(90deg,#00ffae,#00c3ff);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+/* DESCRIPTION */
+
+.desc{
+    color:#d8d8d8;
+    font-size:14px;
+    line-height:1.8;
+}
+
+/* FEATURES */
+
+.features{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+}
+
+.feature{
+    padding:14px 10px;
+    border-radius:18px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    font-size:13px;
+    font-weight:600;
+    line-height:1.5;
+    transition:0.3s;
+}
+
+.feature:hover{
+    transform:scale(1.03);
+    border-color:#00ffae;
+}
+
+/* BUTTON */
 
 .telegram-btn{
-    display:inline-flex;
+    display:flex;
+    justify-content:center;
     align-items:center;
-    gap:15px;
-    padding:18px 38px;
-    border-radius:70px;
+    gap:12px;
+    width:100%;
+    padding:18px;
+    border-radius:60px;
     text-decoration:none;
     color:white;
     font-size:18px;
-    font-weight:700;
-    position:relative;
-    overflow:hidden;
+    font-weight:800;
     background:linear-gradient(135deg,#0088cc,#00c3ff);
     box-shadow:0 0 35px rgba(0,195,255,0.45);
-    transition:0.4s;
-}
-
-.telegram-btn:hover{
-    transform:translateY(-5px) scale(1.03);
-    box-shadow:0 0 60px rgba(0,195,255,0.7);
+    position:relative;
+    overflow:hidden;
 }
 
 .telegram-btn::before{
@@ -202,134 +211,40 @@ header{
     width:120%;
     height:100%;
     background:rgba(255,255,255,0.2);
-    left:-120%;
     top:0;
+    left:-120%;
     transform:skewX(-25deg);
-    transition:0.6s;
+    transition:0.7s;
 }
 
 .telegram-btn:hover::before{
     left:130%;
 }
 
-.telegram-icon{
-    font-size:28px;
-}
+/* FOOTER */
 
-/* Cards */
-
-.section{
-    padding:90px 8%;
-}
-
-.section-title{
+.footer{
     text-align:center;
-    font-size:45px;
-    margin-bottom:60px;
-    font-weight:800;
+    font-size:11px;
+    color:#aaaaaa;
+    padding-top:5px;
 }
 
-.cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:30px;
-}
+/* MOBILE */
 
-.card{
-    background:rgba(255,255,255,0.06);
-    border:1px solid rgba(255,255,255,0.08);
-    border-radius:25px;
-    padding:35px;
-    transition:0.4s;
-    backdrop-filter:blur(10px);
-}
+@media(max-width:480px){
 
-.card:hover{
-    transform:translateY(-10px);
-    border-color:#00ffae;
-    box-shadow:0 0 30px rgba(0,255,174,0.18);
-}
-
-.card h3{
-    font-size:24px;
-    margin-bottom:15px;
-}
-
-.card p{
-    color:#d5d5d5;
-    line-height:1.8;
-}
-
-/* Stats */
-
-.stats{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:25px;
-    margin-top:50px;
-}
-
-.stat-box{
-    text-align:center;
-    padding:40px;
-    border-radius:25px;
-    background:linear-gradient(145deg,rgba(255,255,255,0.06),rgba(255,255,255,0.03));
-    border:1px solid rgba(255,255,255,0.08);
-}
-
-.stat-box h2{
-    font-size:48px;
-    color:#00ffae;
-    margin-bottom:10px;
-}
-
-.stat-box p{
-    color:#d4d4d4;
-}
-
-/* Footer */
-
-footer{
-    padding:40px 20px;
-    text-align:center;
-    border-top:1px solid rgba(255,255,255,0.08);
-    color:#aaa;
-    margin-top:50px;
-}
-
-footer span{
-    color:#00ffae;
-}
-
-/* Mobile */
-
-@media(max-width:768px){
-
-    .hero h1{
-        font-size:42px;
+    .phone-box{
+        max-width:100%;
+        border-radius:0;
+        height:100vh;
+        aspect-ratio:auto;
     }
 
-    .hero p{
-        font-size:16px;
+    h1{
+        font-size:28px;
     }
 
-    .section-title{
-        font-size:32px;
-    }
-
-    .telegram-btn{
-        padding:16px 28px;
-        font-size:16px;
-    }
-
-    .nav{
-        display:none;
-    }
-
-    .top-powered{
-        font-size:14px;
-        letter-spacing:1px;
-    }
 }
 
 </style>
@@ -337,178 +252,84 @@ footer span{
 
 <body>
 
-<!-- POWERED BAR -->
+<div class="main">
 
-<div class="top-powered">
-    POWERED BY VIKRAM MALHAR
+<div class="phone-box">
+
+<!-- POWERED -->
+
+<div class="powered">
+POWERED BY VIKRAM MALHAR
 </div>
 
-<!-- HEADER -->
+<!-- CONTENT -->
 
-<header>
+<div class="content">
 
-<div class="logo">CRICKET INSIGHTS</div>
-
-<div class="nav">
-<a href="#">Home</a>
-<a href="#">Analysis</a>
-<a href="#">Schedule</a>
-<a href="#">Reports</a>
-<a href="#">Insights</a>
+<div class="logo">
+CRICKET INSIGHTS HUB
 </div>
-
-</header>
-
-<!-- HERO -->
-
-<section class="hero">
-
-<div class="hero-content">
 
 <div class="badge">
-🏏 DAILY MATCH ANALYSIS • TOSS REPORT • SESSION UPDATE
+🏏 DAILY MATCH • TOSS • SESSION • REPORTS
 </div>
 
 <h1>
-India's Most <span>Powerful Cricket Insight</span> Telegram Community
+India's Most <span>Powerful Cricket</span> Telegram Community
 </h1>
 
-<p>
-Get daily cricket match updates, toss analysis, winning insights, session reports,
-pitch reports, fantasy tips, schedules, expert analysis and live cricket intelligence
-all in one premium Telegram channel.
-</p>
-
-<a href="https://t.me/+RVFoIKKOME9iZDA1" class="telegram-btn" target="_blank">
-
-<span class="telegram-icon">✈️</span>
-JOIN TELEGRAM NOW
-
-</a>
-
+<div class="desc">
+Get daily match analysis, toss reports, session updates,
+pitch reports, fantasy insights, schedules and live cricket intelligence instantly.
 </div>
-
-</section>
 
 <!-- FEATURES -->
 
-<section class="section">
+<div class="features">
 
-<h2 class="section-title">
-🔥 WHAT YOU GET
-</h2>
-
-<div class="cards">
-
-<div class="card">
-<h3>🏏 Match Analysis</h3>
-<p>
-Deep pre-match analysis with team performance, player form, venue stats and expert opinions.
-</p>
+<div class="feature">
+🏏 Match Analysis
 </div>
 
-<div class="card">
-<h3>🎯 Toss Reports</h3>
-<p>
-Fast toss updates with accurate ground condition analysis and decision impact reports.
-</p>
+<div class="feature">
+🎯 Toss Reports
 </div>
 
-<div class="card">
-<h3>📊 Session Insights</h3>
-<p>
-Daily session updates, match momentum analysis and smart cricket observations.
-</p>
+<div class="feature">
+📊 Session Insights
 </div>
 
-<div class="card">
-<h3>📅 Match Schedule</h3>
-<p>
-Get daily cricket schedules including IPL, T20, ODI and international matches instantly.
-</p>
+<div class="feature">
+📅 Match Schedule
 </div>
 
-<div class="card">
-<h3>⚡ Live Updates</h3>
-<p>
-Instant updates during matches with live score insights and game-changing moments.
-</p>
+<div class="feature">
+⚡ Live Updates
 </div>
 
-<div class="card">
-<h3>🚀 Premium Community</h3>
-<p>
-Join thousands of cricket lovers receiving advanced cricket intelligence every day.
-</p>
+<div class="feature">
+🚀 Premium Access
 </div>
 
 </div>
 
-</section>
-
-<!-- STATS -->
-
-<section class="section">
-
-<h2 class="section-title">
-📈 COMMUNITY POWER
-</h2>
-
-<div class="stats">
-
-<div class="stat-box">
-<h2>24×7</h2>
-<p>Live Cricket Coverage</p>
-</div>
-
-<div class="stat-box">
-<h2>100%</h2>
-<p>Daily Match Updates</p>
-</div>
-
-<div class="stat-box">
-<h2>FAST</h2>
-<p>Toss & Session Reports</p>
-</div>
-
-<div class="stat-box">
-<h2>VIP</h2>
-<p>Premium Cricket Insights</p>
-</div>
-
-</div>
-
-</section>
-
-<!-- JOIN SECTION -->
-
-<section class="section" style="text-align:center;">
-
-<h2 class="section-title">
-🚀 JOIN THE TELEGRAM CHANNEL NOW
-</h2>
-
-<p style="max-width:800px;margin:auto;color:#cfcfcf;line-height:1.9;font-size:18px;margin-bottom:40px;">
-Don't miss daily cricket analysis, toss reports, match insights and session updates.
-Tap below and become part of the fastest growing cricket community.
-</p>
+<!-- BUTTON -->
 
 <a href="https://t.me/+RVFoIKKOME9iZDA1" class="telegram-btn" target="_blank">
 
-<span class="telegram-icon">📢</span>
-ENTER TELEGRAM CHANNEL
+✈️ JOIN TELEGRAM NOW
 
 </a>
 
-</section>
+<div class="footer">
+© 2026 CRICKET INSIGHTS HUB
+</div>
 
-<!-- FOOTER -->
+</div>
 
-<footer>
+</div>
 
-© 2026 <span>CRICKET INSIGHTS HUB</span> — Powered By Vikram Malhar
-
-</footer>
+</div>
 
 </body>
 </html>
